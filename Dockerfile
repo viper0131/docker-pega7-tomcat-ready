@@ -81,16 +81,18 @@ ENV JAVA_OPTS -Xms2048m -Xmx4096m -XX:PermSize=64m -XX:MaxPermSize=384m
 
 # Configure Remote JMX support and bind to port 9001
 ENV JMX_PORT=9001 \
-    JMX_SERVER_HOSTNAME=127.0.0.1 \
-    TOMCAT_JMX_JAR_TGZ_URL=https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/extras/catalina-jmx-remote.jar
+    JMX_SERVER_HOSTNAME=127.0.0.1 
+# \
+#    TOMCAT_JMX_JAR_TGZ_URL=https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/extras/catalina-jmx-remote.jar
 
-RUN set -x && \
-    curl -kLS ${TOMCAT_JMX_JAR_TGZ_URL} -o catalina-jmx-remote.jar && \
-    curl -kLS ${TOMCAT_JMX_JAR_TGZ_URL}.asc -o catalina-jmx-remote.jar.asc && \
-    for key in $GPG_KEYS; do  gpg --no-tty --keyserver keyserver.ubuntu.com --recv-keys "$key"; done && \
-    gpg --no-tty --verify catalina-jmx-remote.jar.asc && \
-    mv catalina-jmx-remote.jar /usr/local/tomcat/lib/catalina-jmx-remote.jar && \
-    rm catalina-jmx-remote.jar.asc
+#RUN set -x && \
+#    curl -kLS ${TOMCAT_JMX_JAR_TGZ_URL} -o catalina-jmx-remote.jar && \
+#    curl -kLS ${TOMCAT_JMX_JAR_TGZ_URL}.asc -o catalina-jmx-remote.jar.asc && \
+#    cat catalina-jmx-remote.jar.asc && \
+#    for key in $GPG_KEYS; do  gpg --no-tty --keyserver keyserver.ubuntu.com --recv-keys "$key"; done && \
+#    gpg --no-tty --verify catalina-jmx-remote.jar.asc && \
+#    mv catalina-jmx-remote.jar /usr/local/tomcat/lib/catalina-jmx-remote.jar && \
+#    rm catalina-jmx-remote.jar.asc
 
 
 # Copy in and configure customized entry point script
