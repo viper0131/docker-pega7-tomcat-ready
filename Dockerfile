@@ -18,7 +18,7 @@ RUN set -x && \
 # Remove python to reduce open cve criticals
 ##
     apt-get purge -y --auto-remove \
-      python && \
+      python python3 && \
 # Cleanup apt
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
