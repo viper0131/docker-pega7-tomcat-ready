@@ -33,6 +33,10 @@ RUN set -x && \
           -d org/apache/catalina/util/ && \
     sed -i 's/server.info=.*/server.info=Webserver/g' \
         org/apache/catalina/util/ServerInfo.properties && \
+    sed -i 's/server.number=.*/server.number=0.0/g' \
+        org/apache/catalina/util/ServerInfo.properties && \
+    sed -i 's/server.build=.*/server.build=/g' \
+        org/apache/catalina/util/ServerInfo.properties && \
     zip -ur catalina.jar \
         org/apache/catalina/util/ServerInfo.properties && \
     rm -rf ${CATALINA_HOME}/lib/org && \
