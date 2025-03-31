@@ -85,7 +85,7 @@ ENV JAVA_OPTS -Xms2048m -Xmx4096m -XX:PermSize=64m -XX:MaxPermSize=384m
 
 # Configure Remote JMX support and bind to port 9001
 ENV JMX_PORT=9001 \
-    JMX_SERVER_HOSTNAME=127.0.0.1 
+    JMX_SERVER_HOSTNAME=127.0.0.1
 # \
 #    TOMCAT_JMX_JAR_TGZ_URL=https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/extras/catalina-jmx-remote.jar
 
