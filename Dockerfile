@@ -53,6 +53,15 @@ RUN set -x && \
     apt-get remove -y zip && \
     apt-get remove zip
 
+
+# Create pega user and group
+RUN groupadd -g 1001 pega && \
+    useradd -u 1001 -g pega -s /bin/bash -m -d /home/pega pegauser && \
+    mkdir -p /opt/pega && \
+    chown -R pegauser:pega /opt/pega /usr/local/tomcat
+
+
+
 # Setup global database variables
 ENV DB_USERNAME=pega \
     DB_PASSWORD=pegasys \
@@ -101,6 +110,10 @@ ENV JMX_PORT=9001 \
 
 # Copy in and configure customized entry point script
 COPY docker-entrypoint.sh  /
+
+# Switch to non-root user
+USER pegauser
+
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["run"]
