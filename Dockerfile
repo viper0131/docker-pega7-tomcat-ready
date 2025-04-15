@@ -112,6 +112,9 @@ ENV JMX_PORT=9001 \
 COPY docker-entrypoint.sh  /
 
 # Switch to non-root user
+RUN chown pegauser:pega $CATALINA_HOME $CATALINA_HOME/conf
+RUN chmod g-w,o-rwx $CATALINA_HOME $CATALINA_HOME/conf
+
 USER pegauser
 
 
